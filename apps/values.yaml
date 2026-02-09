@@ -5,19 +5,19 @@ applicationsets:
     generators:
     - list:
         elements:
-          - cluster: default-cluster
+          - cluster: local-cluster
             url: https://kubernetes.default.svc
     template:
       metadata:
-        name: '{{cluster}}-guestbook'
+        name: '{{cluster}}-apps'
       spec:
         project: default
         sources:
         - chart: elasticsearch
           repoURL: https://helm.elastic.co
           targetRevision: 8.5.1
-        - repoURL: https://github.com/argoproj/argocd-example-apps.git
-          path: guestbook
+        - repoURL:  https://github.com/Olak29/argocd-example-apps.git 
+          path: "*"
           targetRevision: HEAD
         destination:
           server: '{{url}}'
