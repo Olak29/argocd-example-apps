@@ -5,47 +5,20 @@ applicationsets:
     generators:
     - list:
         elements:
-          - cluster: local-cluster
+          - cluster: default-cluster
             url: https://kubernetes.default.svc
     template:
       metadata:
-        name: '{{cluster}}-apps'
+        name: '{{cluster}}-guestbook'
       spec:
         project: default
         sources:
         - chart: elasticsearch
           repoURL: https://helm.elastic.co
           targetRevision: 8.5.1
-        - repoURL:  https://github.com/Olak29/argocd-example-apps.git 
+        - repoURL: https://github.com/argoproj/argocd-example-apps.git
           path: guestbook
           targetRevision: HEAD
         destination:
           server: '{{url}}'
           namespace: default
-# Test with multi-source applicationsets
-
-# applicationsets:
-#   applicationset-multiple-sources:
-#     generators:
-#     - list:
-#         elements:
-#           - cluster: local-cluster
-#             url: https://kubernetes.default.svc
-#     template:
-#       metadata:
-#         name: '{{cluster}}-apps'
-#       spec:
-#         project: default
-#         sources:
-#         - chart: elasticsearch
-#           repoURL: https://helm.elastic.co
-#           targetRevision: 8.5.1
-#         - repoURL: https://github.com/Olak29/argocd-example-apps.git
-#           path: guestbook
-#           targetRevision: HEAD
-#           helm:
-#             valueFiles:
-#              - appset-multiple-values.yaml
-#         destination:
-#           server: '{{url}}'
-#           namespace: default
