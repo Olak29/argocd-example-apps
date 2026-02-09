@@ -16,9 +16,6 @@ applicationsets:
         - repoURL: https://github.com/Olak29/argocd-example-apps.git 
           path: applications
           targetRevision: HEAD
-          helmFiles:
-            valuesFiles:
-            - applications/guestbook
         destination:
           server: '{{url}}'
           namespace: default
