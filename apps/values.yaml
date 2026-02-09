@@ -162,7 +162,7 @@ applicationsets:
     # goTemplate: false
     generators:
     - git:
-        repoURL: https://github.com/argoproj/argocd-example-apps.git
+        repoURL: https://github.com/Olak29/argocd-example-apps.git
         revision: HEAD
         directories:
         - path: guestbook
@@ -179,7 +179,7 @@ applicationsets:
       spec:
         project: default
         source:
-          repoURL: https://github.com/argoproj/argocd-example-apps.git
+          repoURL: https://github.com/Olak29/argocd-example-apps.git
           targetRevision: HEAD
           path: '{{path}}'
         destination:
@@ -190,13 +190,7 @@ applicationsets:
             prune: false
             selfHeal: false
         ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jsonPointers:
-          - /spec/replicas
-        info:
-        - name: url
-          value: https://argoproj.github.io/
+
     syncPolicy:
       # Set Application finalizer
       preserveResourcesOnDeletion: false
@@ -225,7 +219,7 @@ applicationsets:
             project: '{{cluster}}'
             source:
               targetRevision: HEAD
-              repoURL: https://github.com/argoproj/argo-cd.git
+              repoURL: https://github.com/Olak29/argocd-example-apps.git
               # New path value is generated here:
               path: 'applicationset/examples/template-override/{{cluster}}-override'
             destination: {}
