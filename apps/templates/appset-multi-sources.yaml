@@ -1,9 +1,12 @@
-
 {{- range $appSetName, $appSetData:= .Values.applicationsets }}
+{{- if not $appSetData }}
+{{- continue }}
+{{- end }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
+namespace: argo-cd
   {{- with $appSetData.additionalAnnotations }}
   annotations:
     {{- range $key, $value := . }}
@@ -25,6 +28,10 @@ metadata:
 spec:
   {{- if hasKey $appSetData "goTemplate" }}
   goTemplate: {{ $appSetData.goTemplate }}
+  {{- end }}
+  {{- with $appSetData.goTemplateOptions }}
+  goTemplateOptions:
+    {{- toYaml . | nindent 4 }}
   {{- end }}
   {{- with $appSetData.generators }}
   generators:
