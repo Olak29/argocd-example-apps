@@ -176,12 +176,14 @@ applicationsets:
         name: '{{path.basename}}'
         labels: {}
         annotations: {}
+        namespace: argo-cd
       spec:
         project: default
         source:
           repoURL: https://github.com/Olak29/argocd-example-apps.git
           targetRevision: HEAD
           path: '{{path}}'
+
         destination:
           server: https://kubernetes.default.svc
           namespace: default
