@@ -3,6 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
+  namespace: argo-cd
   {{- with $projectData.additionalAnnotations }}
   annotations:
     {{- range $key, $value := . }}
