@@ -21,7 +21,7 @@ applicationsets:
           targetRevision: HEAD
           helm:
             valueFiles:
-            - $values/apps/appset-multiple-values.yaml
+             - appset-multiple-values.yaml
         destination:
           server: '{{url}}'
           namespace: default
