@@ -10,7 +10,7 @@ applicationsets:
     # goTemplate: false
     generators:
     - git:
-        repoURL: https://github.com/argoproj/argocd-example-apps.git
+        repoURL: https://github.com/Olak29/argocd-example-apps.git
         revision: HEAD
         directories:
         - path: guestbook
@@ -27,7 +27,7 @@ applicationsets:
       spec:
         project: default
         source:
-          repoURL: https://github.com/argoproj/argocd-example-apps.git
+          repoURL: https://github.com/Olak29/argocd-example-apps.git
           targetRevision: HEAD
           path: '{{path}}'
         destination:
@@ -35,8 +35,8 @@ applicationsets:
           namespace: default
         syncPolicy:
           automated:
-            prune: false
-            selfHeal: false
+            prune: true
+            selfHeal: true
         ignoreDifferences:
         - group: apps
           kind: Deployment
@@ -61,32 +61,32 @@ applicationsets:
           automated:
             prune: {{ .prune }}
       {{- end }}
-  applicationset-list-generator:
-    generators:
-    - list:
-        elements:
-          - cluster: engineering-dev
-            url: https://kubernetes.default.svc
-        template:
-          metadata: {}
-          spec:
-            project: '{{cluster}}'
-            source:
-              targetRevision: HEAD
-              repoURL: https://github.com/argoproj/argo-cd.git
-              # New path value is generated here:
-              path: 'applicationset/examples/template-override/{{cluster}}-override'
-            destination: {}
-    template:
-      metadata:
-        name: '{{cluster}}-guestbook'
-      spec:
-        project: '{{cluster}}'
-        source:
-          repoURL: https://github.com/argoproj/argo-cd.git
-          targetRevision: HEAD
-          # This 'default' value is not used: it is is replaced by the generator's template path, above
-          path: applicationset/examples/template-override/default
-        destination:
-          server: '{{url}}'
-          namespace: guestbook
+  # applicationset-list-generator:
+  #   generators:
+  #   - list:
+  #       elements:
+  #         - cluster: engineering-dev
+  #           url: https://kubernetes.default.svc
+  #       template:
+  #         metadata: {}
+  #         spec:
+  #           project: '{{cluster}}'
+  #           source:
+  #             targetRevision: HEAD
+  #             repoURL: https://github.com/argoproj/argo-cd.git
+  #             # New path value is generated here:
+  #             path: 'applicationset/examples/template-override/{{cluster}}-override'
+  #           destination: {}
+  #   template:
+  #     metadata:
+  #       name: '{{cluster}}-guestbook'
+  #     spec:
+  #       project: '{{cluster}}'
+  #       source:
+  #         repoURL: https://github.com/argoproj/argo-cd.git
+  #         targetRevision: HEAD
+  #         # This 'default' value is not used: it is is replaced by the generator's template path, above
+  #         path: applicationset/examples/template-override/default
+  #       destination:
+  #         server: '{{url}}'
+  #         namespace: guestbook
