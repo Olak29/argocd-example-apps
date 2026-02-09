@@ -6,6 +6,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
+  namespace: argo-cd
   {{- with $appSetData.additionalAnnotations }}
   annotations:
     {{- range $key, $value := . }}
