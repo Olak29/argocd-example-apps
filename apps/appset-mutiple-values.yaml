@@ -17,8 +17,11 @@ applicationsets:
           repoURL: https://helm.elastic.co
           targetRevision: 8.5.1
         - repoURL: https://github.com/Olak29/argocd-example-apps.git
-          path: "*"
+          path: guestbook
           targetRevision: HEAD
+            helm:
+            valueFiles:
+            - $values/apps/appset-multiple-values.yaml
         destination:
           server: '{{url}}'
           namespace: default
