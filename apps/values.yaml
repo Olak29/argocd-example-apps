@@ -10,7 +10,7 @@ applicationsets:
     # goTemplate: false
     generators:
     - git:
-        repoURL: https://github.com/Olak29/argocd-example-apps.git
+        repoURL: https://github.com/argoproj/argocd-example-apps.git
         revision: HEAD
         directories:
         - path: guestbook
@@ -27,7 +27,7 @@ applicationsets:
       spec:
         project: default
         source:
-          repoURL: https://github.com/Olak29/argocd-example-apps.git
+          repoURL: https://github.com/argoproj/argocd-example-apps.git
           targetRevision: HEAD
           path: '{{path}}'
         destination:
