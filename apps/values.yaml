@@ -19,3 +19,12 @@ applicationsets:
         destination:
           server: '{{url}}'
           namespace: default
+        syncPolicy:
+         syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true
+         automated:
+            prune: true
+            selfHeal: true
+            allowEmpty: false
+          
