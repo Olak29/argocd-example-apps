@@ -16,6 +16,9 @@ applicationsets:
         - repoURL: https://github.com/Olak29/argocd-example-apps.git 
           path: applications
           targetRevision: HEAD
+        - repoURL: https://github.com/argoproj/argoproj-deployments.git
+          path: cert-manager
+          targetRevision: HEAD
         destination:
           server: '{{url}}'
           namespace: default
