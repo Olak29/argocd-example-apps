@@ -19,7 +19,7 @@ applicationsets:
         - repoURL: https://github.com/Olak29/argocd-example-apps.git
           path: guestbook
           targetRevision: HEAD
-            helm:
+          helm:
             valueFiles:
             - $values/apps/appset-multiple-values.yaml
         destination:
