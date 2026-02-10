@@ -7,6 +7,13 @@ applicationsets:
         elements:
           - cluster: local-cluster
             url: https://kubernetes.default.svc
+    - git: 
+        repoURL: https://github.com/Olak29/argocd-example-apps.git 
+        revision: HEAD
+        directories:
+        - path: guestbook
+        - path: kustomize-*
+            
     template:
       metadata:
         name: '{{cluster}}-apps'
