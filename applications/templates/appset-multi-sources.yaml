@@ -1,102 +1,139 @@
-{{- range $appSetName, $appSetData:= .Values.applicationsets }}
-{{- if not $appSetData }}
-{{- continue }}
-{{- end }}
----
+# {{- range $appSetName, $appSetData:= .Values.applicationsets }}
+# {{- if not $appSetData }}
+# {{- continue }}
+# {{- end }}
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   namespace: argo-cd
+#   {{- with $appSetData.additionalAnnotations }}
+#   annotations:
+#     {{- range $key, $value := . }}
+#     {{ $key }}: {{ $value | quote }}
+#     {{- end }}
+#   {{- end }}
+#   {{- with $appSetData.additionalLabels }}
+#   labels:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+#   name: {{ $appSetName }}
+#   {{- with $appSetData.namespace }}
+#   namespace: {{ . }}
+#   {{- end }}
+#   {{- with $appSetData.finalizers }}
+#   finalizers:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+# spec:
+#   {{- if hasKey $appSetData "goTemplate" }}
+#   goTemplate: {{ $appSetData.goTemplate }}
+#   {{- end }}
+#   {{- with $appSetData.goTemplateOptions }}
+#   goTemplateOptions:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+#   {{- with $appSetData.generators }}
+#   generators:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+#   {{- with $appSetData.ignoreApplicationDifferences }}
+#   ignoreApplicationDifferences:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+#   {{- with $appSetData.strategy }}
+#   strategy:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+#   {{- with $appSetData.syncPolicy }}
+#   syncPolicy:
+#     {{- toYaml . | nindent 4 }}
+#   {{- end }}
+#   {{- with $appSetData.template }}
+#   template:
+#     {{- with .metadata }}
+#     metadata:
+#       {{- with .annotations }}
+#       annotations:
+#         {{- range $key, $value := . }}
+#         {{ $key }}: {{ $value | squote }}
+#         {{- end }}
+#       {{- end }}
+#       {{- with .labels }}
+#       labels:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
+#       name: {{ .name | squote }}
+#       {{- with .namespace }}
+#       namespace: {{ . | squote }}
+#       {{- end }}
+#     {{- end }}
+#     {{- with .spec }}
+#     spec:
+#       project: {{ .project | squote }}
+#       {{- with .source }}
+#       source:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
+#       {{- with .sources }}
+#       sources:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
+#       destination:
+#         {{- toYaml .destination | nindent 8 }}
+#       {{- with .syncPolicy }}
+#       syncPolicy:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
+#       {{- with .ignoreDifferences }}
+#       ignoreDifferences:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
+#       {{- with .info }}
+#       info:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
+#     {{- end -}}
+#   {{- end }}
+#   {{- with $appSetData.templatePatch }}
+#   templatePatch: |
+#     {{- . | nindent 4 }}
+#   {{- end }}
+# {{- end }}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
+  name: argo-projects
   namespace: argo-cd
-  {{- with $appSetData.additionalAnnotations }}
-  annotations:
-    {{- range $key, $value := . }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
-  {{- end }}
-  {{- with $appSetData.additionalLabels }}
-  labels:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  name: {{ $appSetName }}
-  {{- with $appSetData.namespace }}
-  namespace: {{ . }}
-  {{- end }}
-  {{- with $appSetData.finalizers }}
-  finalizers:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
 spec:
-  {{- if hasKey $appSetData "goTemplate" }}
-  goTemplate: {{ $appSetData.goTemplate }}
-  {{- end }}
-  {{- with $appSetData.goTemplateOptions }}
-  goTemplateOptions:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- with $appSetData.generators }}
   generators:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- with $appSetData.ignoreApplicationDifferences }}
-  ignoreApplicationDifferences:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- with $appSetData.strategy }}
-  strategy:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- with $appSetData.syncPolicy }}
-  syncPolicy:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- with $appSetData.template }}
+  - git:
+      # git repository to get the variables from
+      repoURL: https://github.com/Olak29/argocd-example-apps.git
+      # branch used to get the variables from 
+      revision: HEAD
+      directories:
+      # path to the directory that includes directories to read as variables
+      - path: appss/*
   template:
-    {{- with .metadata }}
     metadata:
-      {{- with .annotations }}
-      annotations:
-        {{- range $key, $value := . }}
-        {{ $key }}: {{ $value | squote }}
-        {{- end }}
-      {{- end }}
-      {{- with .labels }}
-      labels:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      name: {{ .name | squote }}
-      {{- with .namespace }}
-      namespace: {{ . | squote }}
-      {{- end }}
-    {{- end }}
-    {{- with .spec }}
+      # basename is the name of the directory not the full path
+      name: '{{path.basename}}'
     spec:
-      project: {{ .project | squote }}
-      {{- with .source }}
+      project: default
       source:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .sources }}
-      sources:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        # source repo, in this example both repositories are the same
+        repoURL: https://github.com/Olak29/ArgoCD-ApplicationSet-Demo.git
+        targetRevision: HEAD
+        # path to read manifests from, here it's the full path not only the name of the directory
+        path: '{{path}}'
       destination:
-        {{- toYaml .destination | nindent 8 }}
-      {{- with .syncPolicy }}
+        server: https://kubernetes.default.svc
+        # different namespaces named after the directories names to be used as destinations
+        namespace: '{{path.basename}}'
       syncPolicy:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .ignoreDifferences }}
-      ignoreDifferences:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .info }}
-      info:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-    {{- end -}}
-  {{- end }}
-  {{- with $appSetData.templatePatch }}
-  templatePatch: |
-    {{- . | nindent 4 }}
-  {{- end }}
-{{- end }}
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
