@@ -106,8 +106,8 @@ metadata:
   name: argo-projects
   namespace: argo-cd
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  # goTemplate: true
+  # goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
       # git repository to get the variables from
