@@ -116,8 +116,8 @@ spec:
       revision: HEAD
       directories:
     # path to the directory that includes directories to read as variables
-      - path: guestbook
-      - path: kustomize-*
+      - path: appss/*
+      
   template:
       metadata:
         # basename is the name of the directory not the full path
