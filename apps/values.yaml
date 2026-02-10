@@ -16,9 +16,6 @@ applicationsets:
         - repoURL: https://github.com/Olak29/argocd-example-apps.git 
           path: applications
           targetRevision: HEAD
-          helmFiles:
-            valuesFiles:
-            - applications/guestbook
         destination:
           server: '{{url}}'
           namespace: default
@@ -30,6 +27,7 @@ applicationsets:
             prune: true
             selfHeal: true
             allowEmpty: false
+
 # # Test with multi-source applicationsets
 
 # applicationsets:
