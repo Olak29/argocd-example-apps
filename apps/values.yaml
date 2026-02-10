@@ -51,7 +51,7 @@ applicationsets:
           targetRevision: HEAD
         destination:
           server: '{{url}}'
-          namespace: '{{path.basename}}'
+          namespace: '{{path}}'
         syncPolicy:
          syncOptions:
           - ApplyOutOfSyncOnly=true
