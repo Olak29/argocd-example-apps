@@ -123,7 +123,7 @@ spec:
       project: default
       source:
         # source repo, in this example both repositories are the same
-        repoURL: https://github.com/Olak29/ArgoCD-ApplicationSet-Demo.git
+        repoURL: https://github.com/Olak29/argocd-example-apps.git
         targetRevision: HEAD
         # path to read manifests from, here it's the full path not only the name of the directory
         path: '{{path}}'
