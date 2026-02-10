@@ -35,11 +35,11 @@
 applicationsets:
   applicationset-multiple-sources:
     generators:
-    - list:
-        elements:
-          - cluster: local-cluster
-            url: https://kubernetes.default.svc
-            path: "appss/guestbook"
+    # - list:
+    #     elements:
+    #       - cluster: local-cluster
+    #         url: https://kubernetes.default.svc
+    #         path: "appss/guestbook"
     - git: 
         repoURL: https://github.com/Olak29/argocd-example-apps.git 
         revision: HEAD
