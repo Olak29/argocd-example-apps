@@ -140,3 +140,39 @@ spec:
           automated:
             prune: true
             selfHeal: true
+
+# applicationsets:
+#   guestbook:
+#     namespace: argo-cd
+#     generators:
+    # - list:
+    #     elements:
+    #       - cluster: local-cluster
+    #         url: https://kubernetes.default.svc
+    #         path: "appss/guestbook"
+    # - git: 
+    #     repoURL: https://github.com/Olak29/argocd-example-apps.git 
+    #     revision: HEAD
+    #     directories:
+    #     - path: guestbook
+    #     - path: kustomize-*
+    # template:
+    #   metadata:
+    #     name: '{{path.basename}}'
+    #   spec:
+    #     project: default
+    #     sources:
+    #     - repoURL: https://github.com/Olak29/argocd-example-apps.git 
+    #       path: '{{path}}'
+    #       targetRevision: HEAD
+    #     destination:
+    #       server: '{{url}}'
+    #       namespace: '{{path.base}}'
+    #     syncPolicy:
+    #      syncOptions:
+    #       - ApplyOutOfSyncOnly=true
+    #       - CreateNamespace=true
+    #      automated:
+    #         prune: true
+    #         selfHeal: true
+    #         allowEmpty: false    
