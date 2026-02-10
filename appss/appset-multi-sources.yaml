@@ -118,25 +118,25 @@ spec:
     # path to the directory that includes directories to read as variables
       - path: guestbook
       - path: kustomize-*
-template:
-    metadata:
-      # basename is the name of the directory not the full path
-      name: '{{path.basename}}'
-    spec:
-      project: default
-      source:
-        # source repo, in this example both repositories are the same
-        repoURL: https://github.com/Olak29/argocd-example-apps.git
-        targetRevision: HEAD
-        # path to read manifests from, here it's the full path not only the name of the directory
-        path: '{{path}}'
-      destination:
-        server: https://kubernetes.default.svc
-        # different namespaces named after the directories names to be used as destinations
-        namespace: '{{path.basename}}'
-      syncPolicy:
-        syncOptions:
-          - CreateNamespace=true
-        automated:
-          prune: true
-          selfHeal: true
+  template:
+      metadata:
+        # basename is the name of the directory not the full path
+        name: '{{path.basename}}'
+      spec:
+        project: default
+        source:
+          # source repo, in this example both repositories are the same
+          repoURL: https://github.com/Olak29/argocd-example-apps.git
+          targetRevision: HEAD
+          # path to read manifests from, here it's the full path not only the name of the directory
+          path: '{{path}}'
+        destination:
+          server: https://kubernetes.default.svc
+          # different namespaces named after the directories names to be used as destinations
+          namespace: '{{path.basename}}'
+        syncPolicy:
+          syncOptions:
+            - CreateNamespace=true
+          automated:
+            prune: true
+            selfHeal: true
