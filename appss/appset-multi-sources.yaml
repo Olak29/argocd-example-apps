@@ -111,15 +111,15 @@ spec:
     elements:
       - cluster: local-cluster
         url: https://kubernetes.default.svc
-        path: appss/*
-  # - git:
-  #     # git repository to get the variables from
-  #     repoURL: https://github.com/Olak29/argocd-example-apps.git
-  #     # branch used to get the variables from 
-  #     revision: HEAD
-  #     directories:
-  #     # path to the directory that includes directories to read as variables
-  #     - path: appss/*
+        # path: appss/*
+  - git:
+      # git repository to get the variables from
+      repoURL: https://github.com/Olak29/argocd-example-apps.git
+      # branch used to get the variables from 
+      revision: HEAD
+      directories:
+      # path to the directory that includes directories to read as variables
+      - path: appss/*
   template:
     metadata:
       # basename is the name of the directory not the full path
