@@ -106,6 +106,8 @@ metadata:
   name: argo-projects
   namespace: argo-cd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
   - matrix:
     generator: 
