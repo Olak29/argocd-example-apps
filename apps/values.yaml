@@ -14,7 +14,7 @@ applicationsets:
         project: default
         sources:
         - repoURL: https://github.com/Olak29/argocd-example-apps.git 
-          path: appss/*/
+          path: appss/guestbook
           targetRevision: HEAD
         destination:
           server: '{{url}}'
