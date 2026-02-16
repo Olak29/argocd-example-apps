@@ -39,10 +39,10 @@
 # # Test with multi-source applicationsets
 
 applicationsets:
-  goTemplate: false
-  goTemplateOptions: ["missingkey=error"]
   guestbook:
     namespace: argo-cd
+    goTemplate: false
+    goTemplateOptions: ["missingkey=error"]
     generators:
     - list:
         elements:
