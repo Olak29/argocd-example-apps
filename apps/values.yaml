@@ -40,7 +40,7 @@
 
 applicationsets:
   guestbook:
-   # namespace: argo-cd
+    namespace: argo-cd
     goTemplate: false
     goTemplateOptions: ["missingkey=error"]
     generators:
