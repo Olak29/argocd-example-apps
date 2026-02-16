@@ -60,7 +60,7 @@ applicationsets:
           targetRevision: HEAD
         destination:
           server: '{{url}}'
-          
+          namespace: guestbook
         syncPolicy:
          syncOptions:
           - ApplyOutOfSyncOnly=true
