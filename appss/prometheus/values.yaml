@@ -221,11 +221,11 @@ server:
   ## The URL prefix at which the container can be accessed. Useful in the case the '-web.external-url' includes a slug
   ## so that the various internal URLs are still able to access as they are in the default case.
   ## (Optional)
-  prefixURL: ""
+  prefixURL: "/prometheus"
 
   ## External URL which can access prometheus
   ## Maybe same with Ingress host name
-  baseURL: ""
+  baseURL: "http://prometheus.gtexpression.cloud"
 
   ## Additional server container environment variables
   ##
@@ -769,7 +769,7 @@ server:
     loadBalancerClass: ""
     servicePort: 80
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
     ## externalTrafficPolicy is applicable to service with externally-facing addresses (NodePorts, ExternalIPs, and LoadBalancer IPs)
     externalTrafficPolicy: ""
 
