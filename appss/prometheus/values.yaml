@@ -224,7 +224,6 @@ server:
   ## External URL which can access prometheus
   ## Maybe same with Ingress host name
   baseURL: ""
-  
 
   ## Additional server container environment variables
   ##
@@ -768,7 +767,7 @@ server:
     loadBalancerClass: ""
     servicePort: 80
     sessionAffinity: None
-    type: "ClusterIP"
+    type: ClusterIP
     ## externalTrafficPolicy is applicable to service with externally-facing addresses (NodePorts, ExternalIPs, and LoadBalancer IPs)
     externalTrafficPolicy: ""
 
