@@ -223,9 +223,9 @@ server:
 
   ## External URL which can access prometheus
   ## Maybe same with Ingress host name
-  baseURL: "http://localhost:9090/prometheus"
+  baseURL: "http://prometheus.gtexpression.cloud/prometheus"
   extraFlags:
-    - --web.external-url=http://localhost:9090/prometheus
+    - --web.external-url=http://prometheus.gtexpression.cloud/prometheus
     - --web.route-prefix=/prometheus
 
   ## Additional server container environment variables
