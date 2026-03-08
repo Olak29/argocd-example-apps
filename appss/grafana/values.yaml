@@ -899,6 +899,7 @@ grafana.ini:
   server:
       # The full public facing url you use in browser, used for redirects and emails
     root_url: "http://grafana.gtexpression.cloud/grafana/"
+    serve_from_sub_path: true
  # https://grafana.com/docs/grafana/latest/auth/github/#enable-github-in-grafana
  # auth.github:
  #    enabled: false
