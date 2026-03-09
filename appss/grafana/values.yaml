@@ -326,7 +326,7 @@ ingress:
 route:
   main:
     # -- Enables or disables the route
-    enabled: true
+    enabled: false
 
     # -- Set the route apiVersion, e.g. gateway.networking.k8s.io/v1 or gateway.networking.k8s.io/v1alpha2
     apiVersion: gateway.networking.k8s.io/v1
@@ -900,7 +900,7 @@ grafana.ini:
   server:
       # The full public facing url you use in browser, used for redirects and emails
     root_url: "http://grafana.gtexpression.cloud/grafana/"
-    # serve_from_sub_path: true
+    serve_from_sub_path: true
  # https://grafana.com/docs/grafana/latest/auth/github/#enable-github-in-grafana
  # auth.github:
  #    enabled: false
