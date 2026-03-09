@@ -1613,7 +1613,7 @@ networkPolicy:
   ## When true, grafana will accept connections from any source
   ## (with the correct destination port).
   ##
-  ingress: true
+  ingress: false
   ## @param networkPolicy.ingress When true enables the creation
   ## an ingress network policy
   ##
