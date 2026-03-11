@@ -815,7 +815,7 @@ scrapeConfigs:
     job_name: ""
     static_configs:
       - targets:
-          - localhost:9090
+          - localhost:9090/prometheus
   kubernetes-api-servers:
     enabled: true
     job_name: ""
