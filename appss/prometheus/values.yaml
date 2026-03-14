@@ -425,7 +425,7 @@ server:
   route:
     main:
       ## Enable this route
-      enabled: true
+      enabled: false
 
       ## ApiVersion set by default to "gateway.networking.k8s.io/v1"
       apiVersion: ""
