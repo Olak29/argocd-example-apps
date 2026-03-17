@@ -46,7 +46,7 @@ global:
 injector:
   # True if you want to enable vault agent injection.
   # @default: global.enabled
-  enabled: true
+  enabled: "true"
 
   replicas: 1
 
@@ -56,7 +56,7 @@ injector:
   # If multiple replicas are specified, by default a leader will be determined
   # so that only one injector attempts to create TLS certificates.
   leaderElector:
-    enabled: true
+    enabled: false
 
   # If true, will enable a node exporter metrics endpoint at /metrics.
   metrics:
