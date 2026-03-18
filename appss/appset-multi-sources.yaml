@@ -137,6 +137,7 @@ spec:
         syncPolicy:
           syncOptions:
             - CreateNamespace=true
+            - ServerSideApply=true
           automated:
             prune: true
             selfHeal: true
@@ -172,6 +173,7 @@ spec:
     #      syncOptions:
     #       - ApplyOutOfSyncOnly=true
     #       - CreateNamespace=true
+
     #      automated:
     #         prune: true
     #         selfHeal: true
