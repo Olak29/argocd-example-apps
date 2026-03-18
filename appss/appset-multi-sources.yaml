@@ -139,7 +139,7 @@ spec:
             - CreateNamespace=true
             - ServerSideApply=true
           automated:
-            # prune: false
+            prune: false
             selfHeal: true
 
 # applicationsets:
