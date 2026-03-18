@@ -450,7 +450,7 @@ server:
   # If deployment is on OpenShift, the following block is ignored.
   # In order to expose the service, use the route section below
   ingress:
-    enabled: true
+    enabled: failures
     labels: {}
       # traffic: external
     annotations: {}
@@ -762,7 +762,7 @@ server:
 
     # Configures the service type for the main Vault service.  Can be ClusterIP
     # or NodePort.
-    #type: ClusterIP
+    type: LoadBalancer
 
     # The IP family and IP families options are to set the behaviour in a dual-stack environment.
     # Omitting these values will let the service fall back to whatever the CNI dictates the defaults
