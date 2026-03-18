@@ -450,7 +450,7 @@ server:
   # If deployment is on OpenShift, the following block is ignored.
   # In order to expose the service, use the route section below
   ingress:
-    enabled: failures
+    enabled: false
     labels: {}
       # traffic: external
     annotations: {}
