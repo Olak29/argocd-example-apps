@@ -381,7 +381,9 @@ server:
 
     ## Prometheus server Ingress annotations
     ##
-    annotations: {}
+    annotations: 
+      argocd.argoproj.io/sync-options: ServerSideApply=true
+     
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
